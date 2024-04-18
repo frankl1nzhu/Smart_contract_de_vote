@@ -65,12 +65,13 @@ contract Voting is Ownable {
      * @notice L'électeur ne doit pas être déjà inscrit.
      * @notice Emet un événement "VoterRegistered" lorsque l'inscription est réussie.
      */
-    function registerVoter(address _voterAddress) public onlyOwner {
+    function registerVoter(address _voterAddress) public {
         require(workflowStatus == WorkflowStatus.RegisteringVoters, "Registration of voters is not allowed at this stage.");
         require(!voters[_voterAddress].isRegistered, "Voter is already registered.");
         voters[_voterAddress].isRegistered = true;
         emit VoterRegistered(_voterAddress);
     }
+
     
 
     /**
@@ -133,7 +134,7 @@ contract Voting is Ownable {
      * @param _description La description de la proposition.
      * Exigences :
      * - La description de la proposition ne peut pas être vide.
-     * Le votant ne doit pas avoir déjà voté.
+     * - L'électeur ne doit pas avoir déjà voté.
      * Emet un événement `ProposalRegistered` avec l'index de la nouvelle proposition enregistrée.
      */
     function registerProposal(string memory _description) public onlyDuringVotingSession onlyRegisteredVoter {
@@ -190,6 +191,8 @@ contract Voting is Ownable {
     }
 
 
+
+    event VoterRemoved(address indexed voterAddress);
     /**
      * @dev Supprime un électeur de la liste des électeurs inscrits.
      * @param _voterAddress L'adresse de l'électeur à supprimer.
@@ -202,7 +205,6 @@ contract Voting is Ownable {
         delete voters[_voterAddress];
         emit VoterRemoved(_voterAddress);
     }
-    event VoterRemoved(address indexed voterAddress);
 
 
     /**
