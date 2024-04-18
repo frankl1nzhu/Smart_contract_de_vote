@@ -110,22 +110,22 @@ export default function Home() {
     <>
       <ConnectButton />
       {isConnected ? (
-        <div>
-          <p>Voter Address: <input type="text" onChange={(e) => setVoterAddress(e.target.value)} /></p>
-          <p><button onClick={registerVoter}>Register Voter</button></p>
-          <p><button onClick={startProposalsRegistration}>Start Proposals Registration</button></p>
-          <p>Proposal Description: <input type="text" onChange={(e) => setProposalDescription(e.target.value)} /></p>
-          <p><button onClick={registerProposal}>Register Proposal</button></p>
-          <p><button onClick={endProposalsRegistration}>End Proposals Registration</button></p>
-          <p><button onClick={startVotingSession}>Start Voting Session</button></p>
-          <p><button onClick={() => vote(0)}>Vote for Proposal 0</button></p> {/* Change the proposal ID as needed */}
-          <p><button onClick={endVotingSession}>End Voting Session</button></p>
-          <p><button onClick={tallyVotes}>Tally Votes</button></p>
-          <p><button onClick={getWinner}>Get Winner</button></p>
-          {feedbackMessage && <p>{feedbackMessage}</p>}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <p style={{ margin: '10px 0' }}>Voter Address: <input type="text" onChange={(e) => setVoterAddress(e.target.value)} /></p>
+          <button style={{ marginBottom: '10px' }} onClick={registerVoter}>Register Voter</button>
+          <button style={{ marginBottom: '10px' }} onClick={startProposalsRegistration}>Start Proposals Registration</button>
+          <p style={{ margin: '10px 0' }}>Proposal Description: <input type="text" onChange={(e) => setProposalDescription(e.target.value)} /></p>
+          <button style={{ marginBottom: '10px' }} onClick={registerProposal}>Register Proposal</button>
+          <button style={{ marginBottom: '10px' }} onClick={endProposalsRegistration}>End Proposals Registration</button>
+          <button style={{ marginBottom: '10px' }} onClick={startVotingSession}>Start Voting Session</button>
+          <button style={{ marginBottom: '10px' }} onClick={() => vote(0)}>Vote for Proposal 0</button>
+          <button style={{ marginBottom: '10px' }} onClick={endVotingSession}>End Voting Session</button>
+          <button style={{ marginBottom: '10px' }} onClick={tallyVotes}>Tally Votes</button>
+          <button onClick={getWinner}>Get Winner</button>
+          {feedbackMessage && <p style={{ marginTop: '10px' }}>{feedbackMessage}</p>}
         </div>
       ) : (
-        <p>Please connect your Wallet to our DApp.</p>
+        <p style={{ textAlign: 'center', marginTop: '20px' }}>Please connect your Wallet to our DApp.</p>
       )}
     </>
   )
