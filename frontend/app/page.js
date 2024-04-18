@@ -6,6 +6,7 @@ import { useAccount } from 'wagmi'
 import { readContract, prepareWriteContract, writeContract } from '@wagmi/core'
 
 import { useState } from 'react';
+import Button from '@mui/material/Button';
 
 export default function Home() {
 
@@ -19,11 +20,11 @@ export default function Home() {
       address: contractAddress,
       abi: abi,
       functionName: 'registerVoter',
-      args: [voterAddress]
     })
     const { hash } = await writeContract(request)
     setFeedbackMessage("Voter registered successfully. Transaction hash: " + hash)
   }
+  
 
   const startProposalsRegistration = async () => {
     const { request } = await prepareWriteContract({
@@ -112,16 +113,16 @@ export default function Home() {
       {isConnected ? (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <p style={{ margin: '10px 0' }}>Voter Address: <input type="text" onChange={(e) => setVoterAddress(e.target.value)} /></p>
-          <button style={{ marginBottom: '10px' }} onClick={registerVoter}>Register Voter</button>
-          <button style={{ marginBottom: '10px' }} onClick={startProposalsRegistration}>Start Proposals Registration</button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={registerVoter}>Register Voter</Button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={startProposalsRegistration}>Start Proposals Registration</Button>
           <p style={{ margin: '10px 0' }}>Proposal Description: <input type="text" onChange={(e) => setProposalDescription(e.target.value)} /></p>
-          <button style={{ marginBottom: '10px' }} onClick={registerProposal}>Register Proposal</button>
-          <button style={{ marginBottom: '10px' }} onClick={endProposalsRegistration}>End Proposals Registration</button>
-          <button style={{ marginBottom: '10px' }} onClick={startVotingSession}>Start Voting Session</button>
-          <button style={{ marginBottom: '10px' }} onClick={() => vote(0)}>Vote for Proposal 0</button>
-          <button style={{ marginBottom: '10px' }} onClick={endVotingSession}>End Voting Session</button>
-          <button style={{ marginBottom: '10px' }} onClick={tallyVotes}>Tally Votes</button>
-          <button onClick={getWinner}>Get Winner</button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={registerProposal}>Register Proposal</Button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={endProposalsRegistration}>End Proposals Registration</Button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={startVotingSession}>Start Voting Session</Button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={() => vote(0)}>Vote for Proposal 0</Button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={endVotingSession}>End Voting Session</Button>
+          <Button variant="contained" style={{ marginBottom: '10px' }} onClick={tallyVotes}>Tally Votes</Button>
+          <Button variant="contained" onClick={getWinner}>Get Winner</Button>
           {feedbackMessage && <p style={{ marginTop: '10px' }}>{feedbackMessage}</p>}
         </div>
       ) : (
