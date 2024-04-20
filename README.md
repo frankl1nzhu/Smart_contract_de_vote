@@ -29,6 +29,9 @@ L'interface utilisateur frontend est construite en React.js et permet aux utilis
 4. Connecter votre portefeuille (wallet) à l'application.
 5. Interagir avec le contrat intelligent en utilisant les différentes fonctionnalités fournies dans l'interface utilisateur.
 
+## Déploiement public
+https://vercel.com/frankl1nzhus-projects/smart-contract-de-vote
+
 ## Auteur
 
 Yuzhe ZHU
