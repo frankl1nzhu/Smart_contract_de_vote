@@ -85,6 +85,8 @@ contract Voting is Ownable {
         workflowStatus = WorkflowStatus.ProposalsRegistrationStarted;
         emit WorkflowStatusChange(WorkflowStatus.RegisteringVoters, WorkflowStatus.ProposalsRegistrationStarted);
     }
+
+
     
 
 

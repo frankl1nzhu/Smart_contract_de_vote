@@ -15,27 +15,29 @@ export default function Home() {
   const [proposalDescription, setProposalDescription] = useState('')
   const [feedbackMessage, setFeedbackMessage] = useState('')
 
-  const registerVoter = async () => {
-    const { request } = await prepareWriteContract({
-      address: contractAddress,
-      abi: abi,
-      functionName: 'registerVoter',
-    })
-    const { hash } = await writeContract(request)
-    setFeedbackMessage("Voter registered successfully. Transaction hash: " + hash)
-  }
-  
-
   const startProposalsRegistration = async () => {
     const { request } = await prepareWriteContract({
       address: contractAddress,
       abi: abi,
       functionName: 'startProposalsRegistration',
     })
-    const { hash } = await writeContract(request)
+    const { hash } = await writeContract(request, { gasLimit: 5000000 }); // 增加 gas 限制
     setFeedbackMessage("Proposals registration started successfully. Transaction hash: " + hash)
   }
-
+  
+  const registerVoter = async () => {
+    await startProposalsRegistration();
+    
+    const { request } = await prepareWriteContract({
+      address: contractAddress,
+      abi: abi,
+      functionName: 'registerVoter',
+    })
+    const { hash } = await writeContract(request, { gasLimit: 5000000 }); // 增加 gas 限制
+    setFeedbackMessage("Voter registered successfully. Transaction hash: " + hash)
+  }
+  
+  
   const registerProposal = async () => {
     const { request } = await prepareWriteContract({
       address: contractAddress,
