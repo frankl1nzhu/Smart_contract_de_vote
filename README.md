@@ -35,3 +35,7 @@ https://vercel.com/frankl1nzhus-projects/smart-contract-de-vote
 ## Auteur
 
 Yuzhe ZHU
+Lucas KADERI
+Nohaman LMOSTAQIM
+Islem Zouaoui
+Ousmane DIALLO
